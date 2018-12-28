@@ -1,9 +1,10 @@
 package bubbleSort
 //https://blog.csdn.net/morewindows/article/details/6657829
 
-func BubbleSort(a [100] int) [100]int {
-	for j := 0; j < 99; j++ {
-		for i := 0; i < 99-j; i++ {
+func BubbleSort(a [] int) []int {
+	n:=len(a)
+	for j := 0; j < n-1; j++ {
+		for i := 0; i < n-1-j; i++ {
 			if a[i] > a[i+1] {
 				a[i], a[i+1] = a[i+1], a[i]
 			}
@@ -16,11 +17,12 @@ func BubbleSort(a [100] int) [100]int {
 下面对其进行优化，设置一个标志，如果这一趟发生了交换，
 则为true，否则为false。明显如果有一趟没有发生交换，说明排序已经完成。
  */
-func BubbleSort2(a [100]int )[100]int{
+func BubbleSort2(a []int )[]int{
 	var b bool=true
-	for j:=0;b||j<99;j++{
+	n:=len(a)
+	for j:=0;b||j<n-1;j++{
 		b=false
-		for i:=0;i<99-j;i++{
+		for i:=0;i<n-1-j;i++{
 
 			if a[i]>a[i+1]{
 				a[i],a[i+1]=a[i+1],a[i]
@@ -41,9 +43,9 @@ func BubbleSort2(a [100]int )[100]int{
 
 记录每次遍历的最后一次交换位置
  */
-func BubbleSort3(a [100]int) [100]int {
+func BubbleSort3(a []int) []int {
 	var temp int
-	temp = 99
+	temp = len(a)-1
 	for temp != 0 {
 		k:=temp
 		temp=0//没有发生交换

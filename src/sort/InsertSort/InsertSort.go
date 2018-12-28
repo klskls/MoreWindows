@@ -1,12 +1,5 @@
 package InsertSort
 
-import (
-	"strconv"
-	"fmt"
-	"math/rand"
-)
-
-
 /**
 这样的代码太长了，不够清晰。现在进行一下改写，
 将搜索和数据后移这二个步骤合并。即每次a[i]先和前面一个数据a[i-1]比较，
@@ -18,15 +11,15 @@ import (
 原文：https://blog.csdn.net/MoreWindows/article/details/6665714
 版权声明：本文为博主原创文章，转载请附上博文链接！
  */
-func insertSort(a [100] int)[100]int {
+func InsertSort(a [] int) []int {
 	for i := 1; i < len(a); i++ {
 		temp := a[i]
-		k:=i
+		k := i
 		for k > 0 && a[k-1] > temp {
-			a[k]=a[k-1]
+			a[k] = a[k-1]
 			k--
 		}
-		a[k]=temp
+		a[k] = temp
 	}
 	return a
 }
@@ -38,27 +31,26 @@ func insertSort(a [100] int)[100]int {
 
 3.      i++并重复第二步直到i==n-1。排序完成。
  */
-func insertSort2(a[100]int)[100]int{
+func InsertSort2(a [ ]int) [ ]int {
 	var j int
-	for i:=1;i<len(a);i++{
-		for j=i-1;j>=0;j--{
-			if a[j]<=a[i]{
+	for i := 1; i < len(a); i++ {
+		for j = i - 1; j >= 0; j-- {
+			if a[j] <= a[i] {
 				break
 			}
 		}
 
-		if j!=i-1{
-			temp:=a[i]
+		if j != i-1 {
+			temp := a[i]
 			var k int
-			for k=i-1;k>j;k--{
-				a[k+1]=a[k]
+			for k = i - 1; k > j; k-- {
+				a[k+1] = a[k]
 			}
-			a[k+1]=temp
+			a[k+1] = temp
 		}
 	}
 	return a
 }
-
 
 /**
 再对将a[j]插入到前面a[0…j-1]的有序区间所用的方法进行改写，
@@ -66,12 +58,12 @@ func insertSort2(a[100]int)[100]int{
 就交换a[j]和a[j-1]，再j--直到a[j-1] <= a[j]。
 这样也可以实现将一个新数据新并入到有序区间。
  */
-func insertSort3(a [100]int) [100]int {
+func InsertSort3(a [ ]int) [ ]int {
 
-	for i:=1;i<len(a);i++{
+	for i := 1; i < len(a); i++ {
 
-		for j:=i-1;j>0&&a[j]>a[i];j--{
-			a[j],a[i]=a[i],a[j]
+		for j := i - 1; j >=0 && a[j] > a[j+1]; j-- {
+			a[j], a[j+1] = a[j+1], a[j]
 		}
 	}
 	return a
